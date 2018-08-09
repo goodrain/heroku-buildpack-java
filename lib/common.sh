@@ -92,7 +92,7 @@ install_jdk() {
   local install_dir=${1}
 
   let start=$(nowms)
-  JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/jvm.tgz}
+  JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-http://lang-goodrain-me.oss-cn-shanghai.aliyuncs.com/jvm/jvm.tgz}
   mkdir -p /tmp/jvm-common
   curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
   source /tmp/jvm-common/bin/util
