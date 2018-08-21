@@ -17,6 +17,9 @@ install_maven() {
   if is_supported_maven_version ${mavenVersion}; then
     mavenUrl="https://lang-jvm.s3.amazonaws.com/maven-${mavenVersion}.tar.gz"
     download_maven ${mavenUrl} ${installDir} ${mavenHome}
+    # Append mirror into maven configuration file
+    echo "Append mirror into maven configuration file"
+    sed -i '/<mirrors>/a\ <mirror>\n<id>goodrain-repo</id>\n<name>goodrain repo</name>\n<url>http://maven.goodrain.me</url>\n<mirrorOf>central</mirrorOf>\n</mirror>' $mavenHome/conf/settings.xml
     status_done
   else
     error_return "Error, you have defined an unsupported Maven version in the system.properties file.

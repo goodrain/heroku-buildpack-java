@@ -15,10 +15,6 @@ source $BP_DIR/lib/common.sh
 source $BP_DIR/lib/maven.sh
 source <(curl -s --retry 3 -L $BUILDPACK_STDLIB_URL)
 
-# Append mirror into maven configuration file
-echo "Append mirror into maven configuration file"
-sed '/<mirrors>/a\ <mirror>\n<id>goodrain-repo</id>\n<name>goodrain repo</name>\n<url>http://maven.goodrain.me</url>\n<mirrorOf>central</mirrorOf>\n</mirror>' settings.xml
-
 export_env $ENV_DIR "." "JAVA_OPTS|JAVA_TOOL_OPTIONS"
 
 install_jdk ${BUILD_DIR}
