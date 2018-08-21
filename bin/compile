@@ -17,21 +17,7 @@ source <(curl -s --retry 3 -L $BUILDPACK_STDLIB_URL)
 
 # Append mirror into maven configuration file
 echo "Append mirror into maven configuration file"
-mi='
-    <mirror>
-      <id>goodrain-repo</id>
-      <name>goodrain repo</name>
-      <url>http://maven.goodrain.me</url>
-      <mirrorOf>central</mirrorOf>
-    </mirror>'
-
-sed -i '/<mirrors>/a\
-    <mirror>
-      <id>goodrain-repo<\/id>
-      <name>goodrain repo<\/name>
-      <url>http://maven.goodrain.me<\/url>
-      <mirrorOf>central<\/mirrorOf>
-    <\/mirror>' settings.xml
+sed '/<mirrors>/a\ <mirror>\n<id>goodrain-repo</id>\n<name>goodrain repo</name>\n<url>http://maven.goodrain.me</url>\n<mirrorOf>central</mirrorOf>\n</mirror>' settings.xml
 
 export_env $ENV_DIR "." "JAVA_OPTS|JAVA_TOOL_OPTIONS"
 
