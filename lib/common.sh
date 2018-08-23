@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export DEFAULT_MAVEN_VERSION="3.3.9"
-export BUILDPACK_STDLIB_URL="http://buildpack.oss-cn-shanghai.aliyuncs.com/java/stdlib.sh"
+export BUILDPACK_STDLIB_URL="http://lang.goodrain.me/java/stdlib.sh"
 
 install_maven() {
   local installDir=$1
@@ -15,7 +15,7 @@ install_maven() {
 
   status_pending "Installing Maven ${mavenVersion}"
   if is_supported_maven_version ${mavenVersion}; then
-    mavenUrl="http://buildpack.oss-cn-shanghai.aliyuncs.com/java/maven/maven-${mavenVersion}.tar.gz"
+    mavenUrl="http://lang.goodrain.me/java/maven/maven-${mavenVersion}.tar.gz"
     download_maven ${mavenUrl} ${installDir} ${mavenHome}
     # Append mirror into maven configuration file
     echo "Append mirror into maven configuration file"
@@ -95,7 +95,7 @@ install_jdk() {
   local install_dir=${1}
 
   let start=$(nowms)
-  JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-http://buildpack.oss-cn-shanghai.aliyuncs.com/java/jvm.tgz}
+  JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-http://lang.goodrain.me/java/jvm.tgz}
   mkdir -p /tmp/jvm-common
   curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common
   source /tmp/jvm-common/bin/util
